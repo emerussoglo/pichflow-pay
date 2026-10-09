@@ -119,102 +119,135 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               className="pf-saspay-btn-secondary"
               aria-label="Voir la tarification"
             >
-              <span>Voir la tarification</span>
+              <span>Voir nos tarifs</span>
             </button>
           </div>
         </div>
 
-        {/* 3 FLOATING CARDS (EXACT MATCH TO CAPTURE D'ÉCRAN 2026-10-09 131916.png) */}
-        <div className="pf-hero-floating-stage">
-          {/* Background ambient radial glow for the cards */}
-          <div className="pf-floating-glow-backdrop" aria-hidden="true" />
+        {/* 3 FLOATING CARDS CONNECTED WITH SVG CURVED DASHED LINES */}
+<div className="pf-hero-floating-stage">
+  {/* Background ambient radial glow for the cards */}
+  <div className="pf-floating-glow-backdrop" aria-hidden="true" />
 
-          {/* CARD 1 (LEFT): Abonnement Pro */}
-          <div className="pf-float-card-pro">
-            <div className="pf-card-pro-header">
-              <div className="pf-card-pro-icon">
-                <FontAwesomeIcon icon={faArrowsRotate} />
-              </div>
-              <span className="pf-card-pro-title">Abonnement Pro</span>
-            </div>
+  {/* Lignes SVG de connexion en pointillés (Inspiré de l'image de référence) */}
+  <svg className="pf-floating-connectors-svg" aria-hidden="true" viewBox="0 0 900 380" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="pf-connector-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#2563EB" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.3" />
+      </linearGradient>
+    </defs>
+    
+    {/* Ligne pointillée : Carte 1 (Abonnement Pro) -> Carte 2 (Solde) */}
+    <path
+      d="M 230 140 C 230 220, 280 250, 310 270"
+      fill="none"
+      stroke="url(#pf-connector-gradient)"
+      strokeWidth="2.5"
+      strokeDasharray="6 6"
+      strokeLinecap="round"
+    />
 
-            <div className="pf-card-pro-subbox">
-              <div className="pf-card-pro-plan-row">
-                <span className="pf-card-pro-plan-name">Plan mensuel</span>
-                <span className="pf-card-pro-badge-active">Actif</span>
-              </div>
-              <div className="pf-card-pro-renew">Renouvelé le 4</div>
-            </div>
+    {/* Ligne pointillée : Carte 2 (Solde) -> Carte 3 (Lien de paiement) */}
+    <path
+      d="M 520 280 C 600 280, 620 180, 680 150"
+      fill="none"
+      stroke="url(#pf-connector-gradient)"
+      strokeWidth="2.5"
+      strokeDasharray="6 6"
+      strokeLinecap="round"
+    />
+  </svg>
 
-            <div className="pf-card-pro-next-row">
-              <div className="pf-card-pro-next-label">Prochain prélèvement</div>
-              <div className="pf-card-pro-next-amount">15 000 FCFA</div>
-            </div>
-          </div>
+  {/* CARD 1 (LEFT): Abonnement Pro */}
+  <div className="pf-float-card-pro">
+    <div className="pf-card-pin" />
+    <div className="pf-card-pro-header">
+      <div className="pf-card-pro-icon">
+        <FontAwesomeIcon icon={faArrowsRotate} />
+      </div>
+      <span className="pf-card-pro-title">Abonnement Pro</span>
+    </div>
 
-          {/* CARD 2 (BOTTOM-CENTER, OVERLAPPING): Solde disponible */}
-          <div className="pf-float-card-balance">
-            <div className="pf-card-balance-label">Solde disponible</div>
-            <div className="pf-card-balance-amount">
-              5320000 <span className="pf-card-balance-curr">FCFA</span>
-            </div>
-            <div className="pf-card-balance-usd">≈ 8620,00 USD</div>
+    <div className="pf-card-pro-subbox">
+      <div className="pf-card-pro-plan-row">
+        <span className="pf-card-pro-plan-name">Plan mensuel</span>
+        <span className="pf-card-pro-badge-active">Actif</span>
+      </div>
+      <div className="pf-card-pro-renew">Renouvelé le 4</div>
+    </div>
 
-            <div className="pf-card-balance-buttons">
-              <button
-                type="button"
-                onClick={() => onNavigate('/dashboard/withdrawals')}
-                className="pf-btn-balance-transfer"
-              >
-                Transférer
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('/dashboard/withdrawals')}
-                className="pf-btn-balance-withdraw"
-              >
-                Retirer
-              </button>
-            </div>
-          </div>
+    <div className="pf-card-pro-next-row">
+      <div className="pf-card-pro-next-label">Prochain prélèvement</div>
+      <div className="pf-card-pro-next-amount">15 000 FCFA</div>
+    </div>
+  </div>
 
-          {/* CARD 3 (RIGHT): Lien de paiement créé */}
-          <div className="pf-float-card-link">
-            <div className="pf-card-link-header">
-              <div className="pf-card-link-check">
-                <FontAwesomeIcon icon={faCheck} />
-              </div>
-              <div className="pf-card-link-titles">
-                <div className="pf-card-link-title">Lien de paiement créé</div>
-                <div className="pf-card-link-sub">Prêt à partager</div>
-              </div>
-            </div>
+  {/* CARD 2 (BOTTOM-CENTER, OVERLAPPING): Solde disponible */}
+  <div className="pf-float-card-balance">
+    <div className="pf-card-pin" />
+    <div className="pf-card-balance-label">Solde disponible</div>
+    <div className="pf-card-balance-amount">
+      5320000 <span className="pf-card-balance-curr">FCFA</span>
+    </div>
+    <div className="pf-card-balance-usd">≈ 8620,00 USD</div>
 
-            <div className="pf-card-link-box">
-              <span className="pf-card-link-url">link.pichflow.me/facture-0...</span>
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="pf-card-link-copy"
-              >
-                <FontAwesomeIcon icon={faCopy} />
-                <span>{copiedLink ? 'Copié !' : 'Copier'}</span>
-              </button>
-            </div>
+    <div className="pf-card-balance-buttons">
+      <button
+        type="button"
+        onClick={() => onNavigate('/dashboard/withdrawals')}
+        className="pf-btn-balance-transfer"
+      >
+        Transférer
+      </button>
+      <button
+        type="button"
+        onClick={() => onNavigate('/dashboard/withdrawals')}
+        className="pf-btn-balance-withdraw"
+      >
+        Retirer
+      </button>
+    </div>
+  </div>
 
-            <div className="pf-card-link-shares">
-              <button type="button" className="pf-share-circle pf-share-mail" title="Partager par Email">
-                <FontAwesomeIcon icon={faEnvelope} />
-              </button>
-              <button type="button" className="pf-share-circle pf-share-link" onClick={handleCopyLink} title="Copier le lien">
-                <FontAwesomeIcon icon={faLink} />
-              </button>
-              <button type="button" className="pf-share-circle pf-share-whatsapp" title="Partager sur WhatsApp">
-                <FontAwesomeIcon icon={faWhatsapp} />
-              </button>
-            </div>
-          </div>
-        </div>
+  {/* CARD 3 (RIGHT): Lien de paiement créé */}
+  <div className="pf-float-card-link">
+    <div className="pf-card-pin" />
+    <div className="pf-card-link-header">
+      <div className="pf-card-link-check">
+        <FontAwesomeIcon icon={faCheck} />
+      </div>
+      <div className="pf-card-link-titles">
+        <div className="pf-card-link-title">Lien de paiement créé</div>
+        <div className="pf-card-link-sub">Prêt à partager</div>
+      </div>
+    </div>
+
+    <div className="pf-card-link-box">
+      <span className="pf-card-link-url">link.pichflow.me/facture-0...</span>
+      <button
+        type="button"
+        onClick={handleCopyLink}
+        className="pf-card-link-copy"
+      >
+        <FontAwesomeIcon icon={faCopy} />
+        <span>{copiedLink ? 'Copié !' : 'Copier'}</span>
+      </button>
+    </div>
+
+    <div className="pf-card-link-shares">
+      <button type="button" className="pf-share-circle pf-share-mail" title="Partager par Email">
+        <FontAwesomeIcon icon={faEnvelope} />
+      </button>
+      <button type="button" className="pf-share-circle pf-share-link" onClick={handleCopyLink} title="Copier le lien">
+        <FontAwesomeIcon icon={faLink} />
+      </button>
+      <button type="button" className="pf-share-circle pf-share-whatsapp" title="Partager sur WhatsApp">
+        <FontAwesomeIcon icon={faWhatsapp} />
+      </button>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

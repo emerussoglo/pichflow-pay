@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faArrowRight, faSliders, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 
+
 interface PricingCalculatorProps {
   onNavigate?: (route: string) => void;
 }
@@ -123,19 +124,39 @@ export const PricingCalculator: React.FC<PricingCalculatorProps> = ({ onNavigate
               )}
             </div>
 
-            <button
-              type="button"
-              onClick={() => onNavigate && onNavigate('/register')}
-              className="pf-pricing-submit-btn pf-btn-shimmer-sweep"
-            >
-              <span>Commencer gratuitement</span>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
+            <div className="pf-btn-click-simulator-wrap">
+      <button
+        onClick={() => onNavigate('/register')}
+        className="pf-saspay-btn-primary pf-btn-simulated-click"
+        aria-label="Commencer sur PichFlow"
+      >
+        <span>Commencer</span>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </button>
 
-            <div className="pf-pricing-card-caption">
-              <FontAwesomeIcon icon={faShieldHalved} style={{ marginRight: '0.35rem', color: '#16A34A' }} />
-              Aucune carte bancaire requise pour créer ton compte Sandbox.
-            </div>
+      {/* Simulated auto-clicking mouse cursor */}
+      <div className="pf-simulated-cursor" aria-hidden="true" title="Simulation de clic automatique">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="pf-cursor-svg"
+        >
+          <path
+            d="M4.5 3.5L19 12L12.5 13.5L9 20L4.5 3.5Z"
+            fill="#0F172A"
+            stroke="#FFFFFF"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <div className="pf-cursor-click-ring" />
+      </div>
+    </div>
+
+            
           </div>
         </div>
       </div>

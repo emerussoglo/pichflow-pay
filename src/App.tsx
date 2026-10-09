@@ -142,8 +142,8 @@ function AppContent() {
                 <SecuritySection />
                 <PricingCalculator onNavigate={navigate} />
                 <Developers onNavigate={navigate} />
-                <FaqAccordion onNavigate={navigate} />
                 <FinalCta onNavigate={navigate} />
+                <FaqAccordion onNavigate={navigate} />
               </>
             )}
 

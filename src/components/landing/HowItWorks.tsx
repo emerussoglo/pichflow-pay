@@ -140,7 +140,7 @@ export const SecuritySection: React.FC = () => {
           </h2>
         </div>
 
-        {/* 4 Cards Grid from Capture d'écran 2026-10-09 134549.png */}
+        {/* 4 Cards Grid */}
         <div className="pf-security-cards-grid">
           {/* Card 1 */}
           <div className="pf-security-card">
@@ -171,7 +171,7 @@ export const SecuritySection: React.FC = () => {
             </div>
             <h3 className="pf-security-card-title">Une vigilance continue</h3>
             <p className="pf-security-card-desc">
-              Identifie les comportements inhabituels et renforce la surveillance des transactions pour mieux prévenir les activités suspectes
+              Identifie les comportements inhabituels et renforce la surveillance des transactions pour mieux prévenir les activités suspectes.
             </p>
           </div>
 

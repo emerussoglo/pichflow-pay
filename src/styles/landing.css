@@ -279,7 +279,7 @@
 }
 
 /* ==========================================================================
-   HERO FLOATING CARDS STAGE (Capture d'écran 2026-10-09 131916.png)
+   HERO FLOATING CARDS STAGE WITH CONNECTORS
    ========================================================================== */
 .pf-hero-floating-stage {
   position: relative;
@@ -298,9 +298,35 @@
   transform: translate(-50%, -50%);
   width: 580px;
   height: 320px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
   filter: blur(20px);
   pointer-events: none;
+}
+
+/* --- SVG Connecteurs pointillés --- */
+.pf-floating-connectors-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Pastille point d'ancrage en haut des cartes (style nœud de liaison) */
+.pf-card-pin {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
+  z-index: 5;
 }
 
 /* Card 1: Abonnement Pro */
@@ -399,7 +425,7 @@
 /* Card 2: Solde disponible */
 .pf-float-card-balance {
   position: absolute;
-  left: 24%;
+  left: 28%;
   bottom: 4%;
   width: 275px;
   background: #FFFFFF;
@@ -482,9 +508,9 @@
 /* Card 3: Lien de paiement créé */
 .pf-float-card-link {
   position: absolute;
-  right: 6%;
+  right: 4%;
   top: 8%;
-  width: 320px;
+  width: 310px;
   background: #FFFFFF;
   border: 1px solid #DBEAFE;
   border-radius: 20px;
@@ -590,6 +616,12 @@
   color: #16A34A;
 }
 
+/* Masquage propre des connecteurs sur mobile pour éviter la surcharge visuelle */
+@media (max-width: 768px) {
+  .pf-floating-connectors-svg {
+    display: none;
+  }
+}
 /* ==========================================================================
    2. SAAS LOGOS STRIP (Capture d'écran 2026-10-09 134424.png)
    ========================================================================== */
@@ -755,19 +787,20 @@
   line-height: 1.6;
   margin-top: 0.85rem;
 }
-
 /* ==========================================================================
-   3. CAPACITÉS (Capture d'écran 2026-10-09 134450.png)
+   3. CAPACITÉS (Fully Responsive & Animated)
    ========================================================================== */
 .pf-capacites-section {
   padding: 4.5rem 0;
   background: #FFFFFF;
+  overflow: hidden;
 }
 
 .pf-capacites-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
+  width: 100%;
 }
 
 .pf-capacite-card {
@@ -779,6 +812,8 @@
   transition: transform 200ms ease, box-shadow 200ms ease;
   display: flex;
   flex-direction: column;
+  box-sizing: border-radius;
+  width: 100%;
 }
 
 .pf-capacite-card:hover {
@@ -819,6 +854,8 @@
   border: 1px solid #F1F5F9;
   border-radius: 16px;
   padding: 1rem 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .pf-mini-ui-row {
@@ -844,7 +881,8 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.78rem;
-  color: #64748B;
+  color: #10B981;
+  font-weight: 600;
 }
 
 .pf-mini-dot-green {
@@ -852,8 +890,10 @@
   height: 7px;
   border-radius: 50%;
   background: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
 }
 
+/* --- Animation Barre de Progression (Plan Business) --- */
 .pf-mini-plan-header {
   display: flex;
   align-items: center;
@@ -888,6 +928,7 @@
   height: 100%;
   background: #2563EB;
   border-radius: 9999px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animation fluide */
 }
 
 .pf-mini-plan-sub {
@@ -895,6 +936,7 @@
   color: #94A3B8;
 }
 
+/* --- Card Versement --- */
 .pf-mini-payout-box {
   display: flex;
   align-items: center;
@@ -910,6 +952,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .pf-mini-payout-title {
@@ -923,10 +966,12 @@
   color: #64748B;
 }
 
+/* --- Animation Revenus & Sparkline SVG --- */
 .pf-mini-revenue-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .pf-mini-rev-label {
@@ -939,10 +984,64 @@
   font-size: 1.15rem;
   font-weight: 800;
   color: #0F172A;
+  font-variant-numeric: tabular-nums; /* Évite les décalages visuels durant l'animation */
 }
 
 .pf-mini-rev-sparkline {
-  width: 140px;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.pf-sparkline-path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1.8s ease-in-out;
+}
+
+.pf-sparkline-path.animated {
+  stroke-dashoffset: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Corrections Mobile)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .pf-capacites-grid {
+    grid-template-columns: 1fr; /* Une seule colonne sur tablette/mobile */
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pf-capacites-section {
+    padding: 3rem 0;
+  }
+
+  .pf-capacite-card {
+    padding: 1.5rem 1.25rem; /* Padding optimisé pour mobile */
+    border-radius: 20px;
+  }
+
+  .pf-capacite-title {
+    font-size: 1.15rem;
+  }
+
+  .pf-capacite-desc {
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pf-capacite-mini-ui {
+    padding: 0.85rem 1rem;
+  }
+
+  .pf-mini-rev-amount {
+    font-size: 1.05rem;
+  }
+
+  .pf-mini-rev-sparkline {
+    width: 100px;
+  }
 }
 
 /* ==========================================================================
@@ -1195,9 +1294,8 @@
 .pf-mock-submit-btn:hover {
   background: #1D4ED8;
 }
-
 /* ==========================================================================
-   6. SÉCURITÉ (Dark Section, Capture d'écran 2026-10-09 134549.png)
+   6. SÉCURITÉ (Dark Section, Fully Responsive)
    ========================================================================== */
 .pf-security-dark-section {
   background: #140E26;
@@ -1232,11 +1330,13 @@
   font-family: inherit;
 }
 
+/* Grille réactive (Desktop à Mobile) */
 .pf-security-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-top: 3rem;
+  width: 100%;
 }
 
 .pf-security-card {
@@ -1244,19 +1344,27 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.pf-security-card:hover {
+  border-color: rgba(96, 165, 250, 0.3);
+  transform: translateY(-2px);
 }
 
 .pf-security-icon-circle {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 10px;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
   background: rgba(37, 99, 235, 0.35);
   color: #60A5FA;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
 }
 
 .pf-security-card-title {
@@ -1267,9 +1375,50 @@
 }
 
 .pf-security-card-desc {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: #94A3B8;
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Tablettes & Smartphones)
+   ========================================================================== */
+
+/* Écrans intermédiaires / Tablettes */
+@media (max-width: 1024px) {
+  .pf-security-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Smartphones (Mobile) */
+@media (max-width: 768px) {
+  .pf-security-dark-section {
+    padding: 3rem 1rem;
+    margin: 1.5rem 0.75rem; /* Marges réduites pour ne pas écraser le contenu */
+    border-radius: 20px;
+  }
+
+  .pf-security-cards-grid {
+    grid-template-columns: 1fr; /* Une seule colonne */
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .pf-security-card {
+    padding: 1.5rem 1.25rem; /* Padding interne ajusté pour éviter que le texte soit condensé */
+    width: 100%; /* Prend toute la largeur disponible du conteneur parent */
+  }
+
+  .pf-security-card-title {
+    font-size: 1.05rem;
+  }
+
+  .pf-security-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
 }
 
 /* ==========================================================================
@@ -1861,62 +2010,103 @@
   background: #1D4ED8;
   transform: translateY(-2px);
 }
-
 /* ==========================================================================
-   10. FINAL CTA (SaaS High-Conversion Banner with #2563EB branding)
+   10. FINAL CTA (Dark SaaS High-Conversion Banner with #2563EB Accents)
    ========================================================================== */
+
 .pf-final-cta-section {
   padding: 4rem 0 5rem;
-  background: #FFFFFF;
+  background: #FFFFFF; /* Arrière-plan de page classique */
 }
 
 .pf-final-cta-banner {
-  background: #2563EB;
+  background: #090D16; /* Fond sombre profond */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
-  padding: 4.5rem 2rem;
+  padding: 5rem 2rem;
   text-align: center;
   color: #FFFFFF;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 24px 50px -12px rgba(37, 99, 235, 0.42);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 40px -10px rgba(37, 99, 235, 0.2);
 }
 
+/* --- Effets de lumière centraux et radiaux --- */
 .pf-final-cta-glow {
   position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(37, 99, 235, 0.05) 50%, transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
 
+/* --- Arcs lumineux sur les côtés (Inspirés de l'image de référence) --- */
+.pf-cta-arc-left {
+  position: absolute;
+  top: 20%;
+  left: -120px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 32px solid transparent;
+  border-right-color: #2563EB;
+  border-bottom-color: #3B82F6;
+  filter: blur(8px);
+  opacity: 0.6;
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pf-cta-arc-right {
+  position: absolute;
+  bottom: 10%;
+  right: -100px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 36px solid transparent;
+  border-left-color: #2563EB;
+  border-top-color: #60A5FA;
+  filter: blur(10px);
+  opacity: 0.55;
+  transform: rotate(20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Badge / Pill --- */
 .pf-final-cta-pill {
   position: relative;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
-  padding: 0.35rem 0.95rem;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  backdrop-filter: blur(12px);
+  padding: 0.4rem 1rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  margin-bottom: 1.5rem;
-  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.75rem;
+  color: #93C5FD;
 }
 
 .pf-final-pill-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #60A5FA;
+  background: #3B82F6;
+  box-shadow: 0 0 8px #3B82F6;
 }
 
+/* --- Titre & Typographie --- */
 .pf-final-cta-title {
   position: relative;
   z-index: 2;
@@ -1924,15 +2114,16 @@
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.035em;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   line-height: 1.15;
 }
 
-.pf-italic-cta-white {
+.pf-italic-cta-blue {
   font-style: italic;
   font-family: inherit;
+  color: #60A5FA;
   text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-decoration-color: rgba(96, 165, 250, 0.4);
   text-underline-offset: 6px;
 }
 
@@ -1940,12 +2131,13 @@
   position: relative;
   z-index: 2;
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 600px;
+  color: #94A3B8;
+  max-width: 580px;
   margin: 0 auto 2.5rem;
   line-height: 1.6;
 }
 
+/* --- Boutons d'action --- */
 .pf-final-cta-actions {
   position: relative;
   z-index: 2;
@@ -1954,70 +2146,53 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.25rem;
 }
 
-.pf-final-btn-white {
+/* Bouton bleu principal incandescent */
+.pf-final-btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: #FFFFFF;
-  color: #2563EB;
+  background: #2563EB;
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.9rem 1.85rem;
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 180ms ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transition: all 200ms ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.45);
 }
 
-.pf-final-btn-white:hover {
+.pf-final-btn-primary:hover {
+  background: #1D4ED8;
   transform: translateY(-2px);
-  background: #F8FAFC;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.65);
 }
 
+/* Bouton secondaire en effet verre (Glassmorphism) */
 .pf-final-btn-glass {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+  color: #F1F5F9;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.9rem 1.75rem;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: all 180ms ease;
-  backdrop-filter: blur(4px);
+  transition: all 200ms ease;
+  backdrop-filter: blur(8px);
 }
 
 .pf-final-btn-glass:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
   transform: translateY(-2px);
-}
-
-.pf-final-cta-trust-row {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.pf-final-trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.825rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
 }
 
 /* ==========================================================================

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+interface StartButtonSimulatorProps {
+  onNavigate: (route: string) => void;
+}
 import {
   faPlus,
   faMinus,
@@ -114,14 +118,37 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ onNavigate }) => {
               <div className="pf-faq-bottom-sub">Il ne reste plus qu’à lancer tes encaissements.</div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => onNavigate && onNavigate('/register')}
-              className="pf-faq-bottom-btn pf-btn-shimmer-sweep"
-            >
-              <span>Commencer maintenant</span>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
+            <div className="pf-btn-click-simulator-wrap">
+      <button
+        onClick={() => onNavigate('/register')}
+        className="pf-saspay-btn-primary pf-btn-simulated-click"
+        aria-label="Commencer sur PichFlow"
+      >
+        <span>Commencer</span>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </button>
+
+      {/* Simulated auto-clicking mouse cursor */}
+      <div className="pf-simulated-cursor" aria-hidden="true" title="Simulation de clic automatique">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="pf-cursor-svg"
+        >
+          <path
+            d="M4.5 3.5L19 12L12.5 13.5L9 20L4.5 3.5Z"
+            fill="#0F172A"
+            stroke="#FFFFFF"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <div className="pf-cursor-click-ring" />
+      </div>
+    </div>
           </div>
         </div>
       </div>
@@ -132,45 +159,72 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ onNavigate }) => {
 export const FinalCta: React.FC<{ onNavigate: (route: string) => void }> = ({ onNavigate }) => {
   return (
     <section className="pf-final-cta-section">
-      <div className="pf-container">
-        <div className="pf-final-cta-banner">
-          {/* Subtle Ambient Radial Lighting */}
-          <div className="pf-final-cta-glow" aria-hidden="true" />
+  <div className="pf-container">
+    <div className="pf-final-cta-banner">
+      {/* Effets lumineux d'arrière-plan (Glows & Arcs bleus) */}
+      <div className="pf-final-cta-glow" aria-hidden="true" />
+      <div className="pf-cta-arc-left" aria-hidden="true" />
+      <div className="pf-cta-arc-right" aria-hidden="true" />
 
-          {/* Tag */}
-          <div className="pf-final-cta-pill">
-            <span className="pf-final-pill-dot" />
-            <span>ACCÉLÉRATEUR DE CROISSANCE</span>
-          </div>
-
-          <h2 className="pf-final-cta-title">
-            Prêt à être payé, <span className="pf-italic-cta-white">façon SaaS</span> ?
-          </h2>
-
-          <p className="pf-final-cta-desc">
-            Crée ton compte en quelques minutes et commence à encaisser partout en Afrique, sans abonnement ni engagement.
-          </p>
-
-          <div className="pf-final-cta-actions">
-            <button
-              onClick={() => onNavigate('/register')}
-              className="pf-final-btn-white"
-            >
-              <span>Commencer gratuitement</span>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-
-            <button
-              onClick={() => onNavigate('/pricing')}
-              className="pf-final-btn-glass"
-            >
-              <span>Voir la tarification</span>
-            </button>
-          </div>
-
-          
-        </div>
+      {/* Tag / Badge */}
+      <div className="pf-final-cta-pill">
+        <span className="pf-final-pill-dot" />
+        <span>ACCÉLÉRATEUR DE CROISSANCE</span>
       </div>
-    </section>
+
+      {/* Titre principal */}
+      <h2 className="pf-final-cta-title">
+        Prêt à être payé, <span className="pf-italic-cta-blue">façon SaaS</span> ?
+      </h2>
+
+      {/* Description */}
+      <p className="pf-final-cta-desc">
+        Crée ton compte en quelques minutes et commence à encaisser partout en Afrique, sans abonnement ni engagement.
+      </p>
+
+      {/* Boutons d'action */}
+      <div className="pf-final-cta-actions">
+        <div className="pf-btn-click-simulator-wrap">
+      <button
+        onClick={() => onNavigate('/register')}
+        className="pf-saspay-btn-primary pf-btn-simulated-click"
+        aria-label="Commencer sur PichFlow"
+      >
+        <span>Commencer</span>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </button>
+
+      {/* Simulated auto-clicking mouse cursor */}
+      <div className="pf-simulated-cursor" aria-hidden="true" title="Simulation de clic automatique">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="pf-cursor-svg"
+        >
+          <path
+            d="M4.5 3.5L19 12L12.5 13.5L9 20L4.5 3.5Z"
+            fill="#0F172A"
+            stroke="#FFFFFF"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <div className="pf-cursor-click-ring" />
+      </div>
+    </div>
+
+        <button
+          onClick={() => onNavigate('/pricing')}
+          className="pf-final-btn-glass"
+        >
+          <span>Voir la tarification</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
   );
 };
