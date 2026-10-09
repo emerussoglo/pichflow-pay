@@ -108,7 +108,7 @@ export const AuthPages: React.FC<AuthPageProps> = ({ onNavigate, initialView = '
           {view === 'register' && (
             <>
               <h2 className="pf-auth-title">Créer votre compte</h2>
-              <p className="pf-auth-subtitle">Démarrez gratuitement en environnement Sandbox</p>
+              
             </>
           )}
 
@@ -187,18 +187,18 @@ export const AuthPages: React.FC<AuthPageProps> = ({ onNavigate, initialView = '
               className="pf-btn pf-btn-primary pf-btn-lg pf-btn-shine"
               style={{ width: '100%', marginTop: '0.5rem' }}
             >
-              {isLoading ? 'Connexion en cours...' : 'Se connecter au Dashboard'}
+              {isLoading ? 'Connexion en cours...' : 'Se connecter'}
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
 
             <div className="pf-auth-footer">
-              Vous n'avez pas encore de compte ?{' '}
+              Pas encore de inscrit ?{' '}
               <button
                 type="button"
                 onClick={() => setView('register')}
                 style={{ color: 'var(--pf-primary)', fontWeight: 700 }}
               >
-                Créer un compte gratuitement
+                Créer un compte 
               </button>
             </div>
           </form>
@@ -315,7 +315,7 @@ export const AuthPages: React.FC<AuthPageProps> = ({ onNavigate, initialView = '
               className="pf-btn pf-btn-primary pf-btn-lg pf-btn-shine"
               style={{ width: '100%', marginTop: '0.5rem' }}
             >
-              {isLoading ? 'Création du compte...' : 'Créer mon compte PichFlow'}
+              {isLoading ? 'Création en cours...' : 'Créer mon compte'}
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
 

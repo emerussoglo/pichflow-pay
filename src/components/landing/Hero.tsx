@@ -36,12 +36,38 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <div className="pf-saspay-header">
           {/* Eyebrow Pill */}
           <div className="pf-saspay-pill">
-            <span className="pf-badge-pulsing-dot" />
-            <span className="pf-badge-chip">Nouveau</span>
-            <span className="pf-badge-divider">·</span>
-            <span className="pf-badge-text">La couche de paiement pour l'Afrique</span>
-            <FontAwesomeIcon icon={faArrowRight} className="pf-badge-arrow" />
-          </div>
+  {/* Stack d'avatars de clients / utilisateurs */}
+  <div className="pf-avatar-group">
+    <img
+      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
+      alt="Utilisateur 1"
+      className="pf-avatar"
+    />
+    <img
+      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
+      alt="Utilisateur 2"
+      className="pf-avatar"
+    />
+    <img
+      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80"
+      alt="Utilisateur 3"
+      className="pf-avatar"
+    />
+    <img
+      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80"
+      alt="Utilisateur 4"
+      className="pf-avatar"
+    />
+  </div>
+
+  {/* Texte d'amorce / Preuve sociale */}
+  <div className="pf-badge-content">
+    <span className="pf-badge-highlight">+200 utilisateurs</span>
+    <span className="pf-badge-text">déjà</span>
+  </div>
+
+  <FontAwesomeIcon icon={faArrowRight} className="pf-badge-arrow" />
+</div>
 
           {/* Centered H1 */}
           <h1 className="pf-saspay-title">

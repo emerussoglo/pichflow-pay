@@ -168,21 +168,7 @@ export const FinalCta: React.FC<{ onNavigate: (route: string) => void }> = ({ on
             </button>
           </div>
 
-          {/* Reassurance Trust List */}
-          <div className="pf-final-cta-trust-row">
-            <span className="pf-final-trust-item">
-              <FontAwesomeIcon icon={faCheck} />
-              <span>Sandbox immédiat</span>
-            </span>
-            <span className="pf-final-trust-item">
-              <FontAwesomeIcon icon={faCheck} />
-              <span>Sans carte bancaire</span>
-            </span>
-            <span className="pf-final-trust-item">
-              <FontAwesomeIcon icon={faCheck} />
-              <span>Support réactif 7j/7</span>
-            </span>
-          </div>
+          
         </div>
       </div>
     </section>

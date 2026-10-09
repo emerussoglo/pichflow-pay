@@ -54,21 +54,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
             Compare ton quotidien actuel avec l’infrastructure moderne pensée pour libérer ton temps et propulser tes revenus en Afrique.
           </p>
 
-          {/* Interactive Persona Filter */}
-          <div className="pf-persona-switcher" role="tablist" aria-label="Choisir un profil d'entreprise">
-            {(['saas', 'ecommerce', 'agency'] as const).map((key) => (
-              <button
-                key={key}
-                type="button"
-                role="tab"
-                aria-selected={selectedPersona === key}
-                onClick={() => setSelectedPersona(key)}
-                className={`pf-persona-btn ${selectedPersona === key ? 'active' : ''}`}
-              >
-                {personaDetails[key].label}
-              </button>
-            ))}
-          </div>
+         
         </div>
 
         {/* 2 Comparison Cards (Before vs After) */}
@@ -77,7 +63,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
           <div className="pf-compare-card pf-compare-before">
             <div className="pf-compare-badge pf-badge-before">
               <FontAwesomeIcon icon={faHourglassHalf} />
-              <span>Sans PichFlow · L’ancienne méthode</span>
+              <span>Sans PichFlow</span>
             </div>
 
             
@@ -88,7 +74,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faXmark} />
                 </span>
                 <span>
-                  <strong>Jongler entre 4 applications d’opérateurs</strong> pour vérifier chaque paiement Orange, MTN, Wave et Moov.
+                  <strong>Jongler entre applications d’opérateurs</strong> pour voir tes paiements Orange, MTN, Wave et autres.
                 </span>
               </li>
               <li>
@@ -96,7 +82,16 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faXmark} />
                 </span>
                 <span>
-                  <strong>Soirées entières sur des tableurs Excel</strong> à réconcilier les factures et traquer les décalages de caisse.
+                  <strong>Des heures sur Excel</strong> à réconcilier vos factures et traquer les erreurs.
+                </span>
+              </li>
+              
+              <li>
+                <span className="pf-compare-icon-wrap icon-cross">
+                  <FontAwesomeIcon icon={faXmark} />
+                </span>
+                <span>
+                  <strong>Abonnements mensuels payés</strong> même sans ventes.
                 </span>
               </li>
               <li>
@@ -104,30 +99,14 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faXmark} />
                 </span>
                 <span>
-                  <strong>Abonnés perdus au premier échec</strong> faute de système automatique de relance des cartes ou des portefeuilles.
-                </span>
-              </li>
-              <li>
-                <span className="pf-compare-icon-wrap icon-cross">
-                  <FontAwesomeIcon icon={faXmark} />
-                </span>
-                <span>
-                  <strong>Frais fixes et abonnements mensuels</strong> prélevés même les mois où tu génères peu de ventes.
-                </span>
-              </li>
-              <li>
-                <span className="pf-compare-icon-wrap icon-cross">
-                  <FontAwesomeIcon icon={faXmark} />
-                </span>
-                <span>
-                  <strong>Délais de virement de 3 à 5 jours</strong> pour accéder à tes propres fonds et payer ton équipe.
+                  <strong>Accès aux fonds en 3 à 5 jours</strong> pour financer votre équipe.
                 </span>
               </li>
             </ul>
 
             <div className="pf-compare-footer pf-footer-before">
               <span className="pf-compare-verdict-title">Bilan :</span>
-              <span className="pf-compare-verdict-desc">Charge mentale élevée, perte de conversions et temps précieux gaspillé.</span>
+              <span className="pf-compare-verdict-desc">Charge mentale, pertes de conversions et temps perdu.</span>
             </div>
           </div>
 
@@ -137,7 +116,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
 
             <div className="pf-compare-badge pf-badge-after">
               <FontAwesomeIcon icon={faBolt} />
-              <span>Avec PichFlow · La méthode SaaS moderne</span>
+              <span>Avec PichFlow</span>
             </div>
 
             <ul className="pf-compare-list pf-list-after">
@@ -146,7 +125,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
                 <span>
-                  <strong>Une seule intégration universelle</strong> pour accepter cartes Visa/Mastercard et Mobile Money dans 8 pays.
+                  <strong>Une seule intégration</strong> pour accepter cartes et Mobile Money dans 8 pays.
                 </span>
               </li>
               <li>
@@ -154,7 +133,16 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
                 <span>
-                  <strong>Tableau de bord unifié en direct</strong> : chaque franc est tracé, catégorisé et réconcilié à la seconde.
+                  <strong>Suivi en temps réel :</strong> vos transactions tracées et réconciliées à la seconde.
+                </span>
+              </li>
+              
+              <li>
+                <span className="pf-compare-icon-wrap icon-check">
+                  <FontAwesomeIcon icon={faCheck} />
+                </span>
+                <span>
+                  <strong>0 FCFA d'abonnement :</strong> paie uniquement une commission sur tes encaissements réussis.
                 </span>
               </li>
               <li>
@@ -162,23 +150,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
                 <span>
-                  <strong>Gestion automatique des abonnements</strong> avec relances intelligentes qui sauvent jusqu’à 98% des clients.
-                </span>
-              </li>
-              <li>
-                <span className="pf-compare-icon-wrap icon-check">
-                  <FontAwesomeIcon icon={faCheck} />
-                </span>
-                <span>
-                  <strong>0 FCFA d’abonnement fixe</strong> : tu ne paies une commission claire que lorsque tu encaisses avec succès.
-                </span>
-              </li>
-              <li>
-                <span className="pf-compare-icon-wrap icon-check">
-                  <FontAwesomeIcon icon={faCheck} />
-                </span>
-                <span>
-                  <strong>Versements et retraits instantanés</strong> vers tes comptes bancaires et portefeuilles mobiles marchands.
+                  <strong>Retraits instantanés</strong> vers vos comptes bancaires et Mobile Money.
                 </span>
               </li>
             </ul>
@@ -187,7 +159,7 @@ export const SelfRecognition: React.FC<SelfRecognitionProps> = ({ onNavigate }) 
               <div className="pf-compare-after-cta-row">
                 <div className="pf-verdict-after-text">
                   <span className="pf-compare-verdict-title">Bilan :</span>
-                  <span className="pf-compare-verdict-desc">Sérénité totale, zéro friction et trésorerie disponible instantanément.</span>
+                  <span className="pf-compare-verdict-desc">Sérénité totale zéro friction et trésorerie disponible instantanément.</span>
                 </div>
                 <button
                   type="button"
