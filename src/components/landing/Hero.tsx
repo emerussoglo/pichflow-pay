@@ -39,22 +39,22 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   {/* Stack d'avatars de clients / utilisateurs */}
   <div className="pf-avatar-group">
     <img
-      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
+      src="https://images.unsplash.com/photo-1563132337-f159f484226c?q=80&w=387&auto=format&fit=crop&ixlib"
       alt="Utilisateur 1"
       className="pf-avatar"
     />
     <img
-      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
+      src="https://images.unsplash.com/photo-1637684666772-1f215bfd0f5d?q=80&w=388&auto=format&fit=crop&ixlib"
       alt="Utilisateur 2"
       className="pf-avatar"
     />
     <img
-      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80"
+      src="https://images.unsplash.com/photo-1561406636-b80293969660?q=80&w=387&auto=format&fit=crop&ixlib"
       alt="Utilisateur 3"
       className="pf-avatar"
     />
     <img
-      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80"
+      src="https://plus.unsplash.com/premium_photo-1758836220645-9d0373498f98?q=80&w=870&auto=format&fit=crop&ixlib"
       alt="Utilisateur 4"
       className="pf-avatar"
     />

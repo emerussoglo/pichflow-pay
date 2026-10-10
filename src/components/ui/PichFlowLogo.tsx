@@ -39,11 +39,11 @@ export const PichFlowLogo: React.FC<PichFlowLogoProps> = ({
           width: `${iconDimensions.box}px`,
           height: `${iconDimensions.box}px`,
           borderRadius: size === 'sm' ? '8px' : size === 'xl' ? '14px' : '10px',
-          background: 'linear-gradient(135deg, #5A32E8 0%, #4C26D6 60%, #3B1CB8 100%)',
+          background: 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 60%, #1E40AF 100%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 14px -2px rgba(90, 50, 232, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35)',
+          boxShadow: '0 4px 14px -2px rgba(37, 99, 235, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35)',
           flexShrink: 0,
           position: 'relative',
           overflow: 'hidden',
@@ -126,7 +126,7 @@ export const PichFlowLogo: React.FC<PichFlowLogoProps> = ({
             color: '#0F172A',
           }}
         >
-          Pich<span style={{ color: '#5A32E8' }}>Flow</span>
+          Pich<span style={{ color: '#2563EB' }}>Flow</span>
         </span>
       )}
     </div>

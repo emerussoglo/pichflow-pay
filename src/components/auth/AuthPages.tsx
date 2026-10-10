@@ -6,9 +6,9 @@ import {
   faUser,
   faGlobe,
   faArrowRight,
-  faCheck,
   faCircleCheck,
   faKey,
+  faShieldHalved,
 } from '@fortawesome/free-solid-svg-icons';
 import { useToast } from '../ui/ToastContext';
 import { PichFlowLogo } from '../ui/PichFlowLogo';
@@ -80,373 +80,409 @@ export const AuthPages: React.FC<AuthPageProps> = ({ onNavigate, initialView = '
   };
 
   return (
-    <div className="pf-auth-wrapper pf-grid-bg">
-      {/* Background glow */}
-      <div
-        className="pf-radial-glow pf-radial-glow-primary"
-        style={{ top: '20%', left: '50%', transform: 'translateX(-50%)', width: '500px', height: '500px' }}
-      />
+    <div className="pf-auth-page-wrapper">
+      <div className="pf-auth-split-card">
+        
+        {/* Côté Gauche: Visuel Multicolore & Message de Salutation */}
+        <div className="pf-auth-visual-side">
+          <div className="pf-auth-visual-overlay" />
+          <div className="pf-auth-visual-content">
+            <div className="pf-auth-badge">
+              <FontAwesomeIcon icon={faShieldHalved} />
+              <span>Infrastructure SaaS Sécurisée</span>
+            </div>
 
-      <div className="pf-auth-card">
-        {/* Logo and Header */}
-        <div className="pf-auth-header">
-          <button
-            onClick={() => onNavigate('/')}
-            className="pf-brand pf-auth-logo"
-            style={{ cursor: 'pointer', margin: '0 auto 1.25rem auto', background: 'none', border: 'none', padding: 0 }}
-          >
-            <PichFlowLogo size="lg" />
-          </button>
+            {view === 'login' && (
+              <>
+                <h1 className="pf-visual-title">Ravi de vous revoir !</h1>
+                <p className="pf-visual-desc">
+                  Connectez-vous pour piloter vos flux de paiement, gérer vos abonnements et suivre vos revenus en toute sérénité.
+                </p>
+              </>
+            )}
 
-          {view === 'login' && (
-            <>
-              <h2 className="pf-auth-title">Connexion à PichFlow</h2>
-              <p className="pf-auth-subtitle">Accédez à vos flux de paiement et applications</p>
-            </>
-          )}
+            {view === 'register' && (
+              <>
+                <h1 className="pf-visual-title">Propulsez vos paiements en Afrique</h1>
+                <p className="pf-visual-desc">
+                  Créez votre compte en moins de 2 minutes et commencez à encaisser par Mobile Money et carte bancaire.
+                </p>
+              </>
+            )}
 
-          {view === 'register' && (
-            <>
-              <h2 className="pf-auth-title">Créer votre compte</h2>
-              
-            </>
-          )}
-
-          {view === 'verify-email' && (
-            <>
-              <h2 className="pf-auth-title">Vérification de l’email</h2>
-              <p className="pf-auth-subtitle">Nous avons envoyé un code de confirmation</p>
-            </>
-          )}
-
-          {view === 'forgot-password' && (
-            <>
-              <h2 className="pf-auth-title">Mot de passe oublié</h2>
-              <p className="pf-auth-subtitle">Saisissez votre adresse email pour réinitialiser</p>
-            </>
-          )}
-
-          {view === 'reset-password' && (
-            <>
-              <h2 className="pf-auth-title">Nouveau mot de passe</h2>
-              <p className="pf-auth-subtitle">Choisissez un mot de passe robuste et sécurisé</p>
-            </>
-          )}
+            {(view === 'verify-email' || view === 'forgot-password' || view === 'reset-password') && (
+              <>
+                <h1 className="pf-visual-title">Sécurité & Confidentialité</h1>
+                <p className="pf-visual-desc">
+                  Vos données et vos clés de paiement sont protégées par les standards de sécurité les plus stricts du secteur.
+                </p>
+              </>
+            )}
+          </div>
         </div>
 
-        {/* 1. LOGIN FORM */}
-        {view === 'login' && (
-          <form onSubmit={handleLoginSubmit}>
-            <div className="pf-form-group">
-              <label className="pf-label">Email professionnel</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                <input
-                  type="email"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="alexandre@entreprise.bj"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
+        {/* Côté Droit: Formulaire */}
+        <div className="pf-auth-form-side">
+          {/* Logo & Header */}
+          <div className="pf-auth-header">
+            <button
+              onClick={() => onNavigate('/')}
+              className="pf-brand pf-auth-logo"
+              style={{ cursor: 'pointer', margin: '0 auto 1rem auto', background: 'none', border: 'none', padding: 0 }}
+            >
+              <PichFlowLogo size="lg" />
+            </button>
 
-            <div className="pf-form-group">
-              <div className="pf-label">
-                <span>Mot de passe</span>
+            {view === 'login' && (
+              <>
+                <h2 className="pf-auth-title">Se connecter</h2>
+                <p className="pf-auth-subtitle">Accédez à votre espace marchand PichFlow</p>
+              </>
+            )}
+
+            {view === 'register' && (
+              <>
+                <h2 className="pf-auth-title">Créer un compte</h2>
+                <p className="pf-auth-subtitle">Commencez gratuitement, sans engagement</p>
+              </>
+            )}
+
+            {view === 'verify-email' && (
+              <>
+                <h2 className="pf-auth-title">Vérification de l’email</h2>
+                <p className="pf-auth-subtitle">Un code de confirmation vous a été envoyé</p>
+              </>
+            )}
+
+            {view === 'forgot-password' && (
+              <>
+                <h2 className="pf-auth-title">Mot de passe oublié</h2>
+                <p className="pf-auth-subtitle">Saisissez votre adresse email pour réinitialiser</p>
+              </>
+            )}
+
+            {view === 'reset-password' && (
+              <>
+                <h2 className="pf-auth-title">Nouveau mot de passe</h2>
+                <p className="pf-auth-subtitle">Choisissez un mot de passe robuste et sécurisé</p>
+              </>
+            )}
+          </div>
+
+          {/* 1. LOGIN FORM */}
+          {view === 'login' && (
+            <form onSubmit={handleLoginSubmit} className="pf-auth-form">
+              <div className="pf-form-group">
+                <label className="pf-label">Email professionnel</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </span>
+                  <input
+                    type="email"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="alexandre@entreprise.bj"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="pf-form-group">
+                <div className="pf-label-row">
+                  <label className="pf-label">Mot de passe</label>
+                  <button
+                    type="button"
+                    onClick={() => setView('forgot-password')}
+                    className="pf-label-sub-link"
+                  >
+                    Mot de passe oublié ?
+                  </button>
+                </div>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faLock} />
+                  </span>
+                  <input
+                    type="password"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="••••••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="pf-auth-submit-btn"
+              >
+                <span>{isLoading ? 'Connexion en cours...' : 'Se connecter'}</span>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+
+              <div className="pf-auth-footer">
+                Pas encore inscrit ?{' '}
                 <button
                   type="button"
-                  onClick={() => setView('forgot-password')}
-                  className="pf-label-sub"
-                  style={{ color: 'var(--pf-primary)', cursor: 'pointer' }}
+                  onClick={() => setView('register')}
+                  className="pf-auth-switch-btn"
                 >
-                  Mot de passe oublié ?
+                  Créer un compte
                 </button>
               </div>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                  type="password"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="••••••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+            </form>
+          )}
+
+          {/* 2. REGISTER FORM */}
+          {view === 'register' && (
+            <form onSubmit={handleRegisterSubmit} className="pf-auth-form">
+              <div className="pf-form-group">
+                <label className="pf-label">Nom complet ou Entreprise</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <input
+                    type="text"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="Alexandre Dossou"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="pf-btn pf-btn-primary pf-btn-lg pf-btn-shine"
-              style={{ width: '100%', marginTop: '0.5rem' }}
-            >
-              {isLoading ? 'Connexion en cours...' : 'Se connecter'}
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
+              <div className="pf-form-group">
+                <label className="pf-label">Email professionnel</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </span>
+                  <input
+                    type="email"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="contact@entreprise.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
 
-            <div className="pf-auth-footer">
-              Pas encore de inscrit ?{' '}
+              <div className="pf-form-group">
+                <label className="pf-label">Pays principal</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faGlobe} />
+                  </span>
+                  <select
+                    className="pf-select pf-input-with-icon"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                  >
+                    <option value="BJ">Bénin (+229) · XOF</option>
+                    <option value="CI">Côte d'Ivoire (+225) · XOF</option>
+                    <option value="SN">Sénégal (+221) · XOF</option>
+                    <option value="TG">Togo (+228) · XOF</option>
+                    <option value="BF">Burkina Faso (+226) · XOF</option>
+                    <option value="CM">Cameroun (+237) · XAF</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="pf-form-row-2col">
+                <div className="pf-form-group">
+                  <label className="pf-label">Mot de passe</label>
+                  <div className="pf-input-wrapper">
+                    <span className="pf-input-icon">
+                      <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <input
+                      type="password"
+                      className="pf-input pf-input-with-icon"
+                      placeholder="Min. 8 caractères"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="pf-form-group">
+                  <label className="pf-label">Confirmation</label>
+                  <div className="pf-input-wrapper">
+                    <span className="pf-input-icon">
+                      <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <input
+                      type="password"
+                      className="pf-input pf-input-with-icon"
+                      placeholder="Confirmer"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="pf-form-group">
+                <label className="pf-checkbox-label">
+                  <input
+                    type="checkbox"
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                  />
+                  <span>
+                    J'accepte les conditions d'utilisation et la politique de confidentialité de PichFlow.
+                  </span>
+                </label>
+              </div>
+
               <button
-                type="button"
-                onClick={() => setView('register')}
-                style={{ color: 'var(--pf-primary)', fontWeight: 700 }}
+                type="submit"
+                disabled={isLoading}
+                className="pf-auth-submit-btn"
               >
-                Créer un compte 
+                <span>{isLoading ? 'Création en cours...' : 'Créer mon compte'}</span>
+                <FontAwesomeIcon icon={faArrowRight} />
               </button>
-            </div>
-          </form>
-        )}
 
-        {/* 2. REGISTER FORM */}
-        {view === 'register' && (
-          <form onSubmit={handleRegisterSubmit}>
-            <div className="pf-form-group">
-              <label className="pf-label">Nom complet ou Entreprise</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faUser} />
-                </span>
-                <input
-                  type="text"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="Alexandre Dossou"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="pf-form-group">
-              <label className="pf-label">Email professionnel</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                <input
-                  type="email"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="contact@cardix.africa"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="pf-form-group">
-              <label className="pf-label">Pays principal</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faGlobe} />
-                </span>
-                <select
-                  className="pf-select pf-input-with-icon"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
+              <div className="pf-auth-footer">
+                Vous avez déjà un compte ?{' '}
+                <button
+                  type="button"
+                  onClick={() => setView('login')}
+                  className="pf-auth-switch-btn"
                 >
-                  <option value="BJ">Bénin (+229) · XOF</option>
-                  <option value="CI">Côte d'Ivoire (+225) · XOF</option>
-                  <option value="SN">Sénégal (+221) · XOF</option>
-                  <option value="TG">Togo (+228) · XOF</option>
-                  <option value="BF">Burkina Faso (+226) · XOF</option>
-                  <option value="CM">Cameroun (+237) · XAF</option>
-                </select>
+                  Se connecter
+                </button>
               </div>
-            </div>
+            </form>
+          )}
 
-            <div className="pf-form-group">
-              <label className="pf-label">Mot de passe</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                  type="password"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="Minimum 8 caractères"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+          {/* 3. VERIFY EMAIL SCREEN */}
+          {view === 'verify-email' && (
+            <div className="pf-auth-form">
+              <div className="pf-auth-alert pf-auth-alert-success">
+                <FontAwesomeIcon icon={faCircleCheck} />
+                <span>Un email contenant votre lien a été envoyé à <strong>{email || 'votre adresse'}</strong>.</span>
               </div>
-            </div>
 
-            <div className="pf-form-group">
-              <label className="pf-label">Confirmation du mot de passe</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                  type="password"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="Répétez votre mot de passe"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
+              <p className="pf-verify-text">
+                Veuillez cliquer sur le lien reçu pour activer votre accès aux clés API. Pensez à vérifier votre dossier spams.
+              </p>
 
-            <div className="pf-form-group">
-              <label className="pf-checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={termsAccepted}
-                  onChange={(e) => setTermsAccepted(e.target.checked)}
-                />
-                <span>
-                  J'accepte les conditions générales d'utilisation et la politique de protection des données de PichFlow.
-                </span>
-              </label>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="pf-btn pf-btn-primary pf-btn-lg pf-btn-shine"
-              style={{ width: '100%', marginTop: '0.5rem' }}
-            >
-              {isLoading ? 'Création en cours...' : 'Créer mon compte'}
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-
-            <div className="pf-auth-footer">
-              Vous avez déjà un compte ?{' '}
               <button
                 type="button"
-                onClick={() => setView('login')}
-                style={{ color: 'var(--pf-primary)', fontWeight: 700 }}
+                onClick={() => onNavigate('dashboard')}
+                className="pf-auth-submit-btn"
               >
-                Se connecter
+                <span>Accéder au Dashboard</span>
+                <FontAwesomeIcon icon={faArrowRight} />
               </button>
+
+              <div className="pf-auth-footer">
+                <button
+                  type="button"
+                  onClick={() => setView('login')}
+                  className="pf-auth-back-btn"
+                >
+                  Retour à la page de connexion
+                </button>
+              </div>
             </div>
-          </form>
-        )}
+          )}
 
-        {/* 3. VERIFY EMAIL SCREEN */}
-        {view === 'verify-email' && (
-          <div>
-            <div className="pf-auth-alert pf-auth-alert-success">
-              <FontAwesomeIcon icon={faCircleCheck} />
-              <span>Un email contenant votre lien de confirmation a été envoyé à <strong>{email || 'votre adresse'}</strong>.</span>
-            </div>
+          {/* 4. FORGOT PASSWORD SCREEN */}
+          {view === 'forgot-password' && (
+            <form onSubmit={handleForgotSubmit} className="pf-auth-form">
+              <div className="pf-form-group">
+                <label className="pf-label">Email de votre compte</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </span>
+                  <input
+                    type="email"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="votre-email@domaine.com"
+                    required
+                  />
+                </div>
+              </div>
 
-            <p style={{ fontSize: '0.875rem', color: 'var(--pf-muted)', textAlign: 'center', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-              Veuillez cliquer sur le lien reçu pour activer votre accès aux clés API. Pensez à vérifier votre dossier spams si besoin.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => onNavigate('dashboard')}
-              className="pf-btn pf-btn-primary pf-btn-lg"
-              style={{ width: '100%', marginBottom: '1rem' }}
-            >
-              Accéder au Dashboard (Simuler confirmation)
-            </button>
-
-            <div className="pf-auth-footer">
               <button
-                type="button"
-                onClick={() => setView('login')}
-                style={{ color: 'var(--pf-muted)' }}
+                type="submit"
+                disabled={isLoading}
+                className="pf-auth-submit-btn"
               >
-                Retour à la page de connexion
+                <span>{isLoading ? 'Envoi...' : 'Envoyer les instructions'}</span>
+                <FontAwesomeIcon icon={faArrowRight} />
               </button>
-            </div>
-          </div>
-        )}
 
-        {/* 4. FORGOT PASSWORD SCREEN */}
-        {view === 'forgot-password' && (
-          <form onSubmit={handleForgotSubmit}>
-            <div className="pf-form-group">
-              <label className="pf-label">Email de votre compte</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </span>
-                <input
-                  type="email"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="votre-email@domaine.com"
-                  required
-                />
+              <div className="pf-auth-footer">
+                <button
+                  type="button"
+                  onClick={() => setView('login')}
+                  className="pf-auth-back-btn"
+                >
+                  Annuler et revenir à la connexion
+                </button>
               </div>
-            </div>
+            </form>
+          )}
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="pf-btn pf-btn-primary pf-btn-lg"
-              style={{ width: '100%', marginTop: '0.5rem' }}
-            >
-              {isLoading ? 'Envoi...' : 'Envoyer les instructions'}
-            </button>
+          {/* 5. RESET PASSWORD SCREEN */}
+          {view === 'reset-password' && (
+            <form onSubmit={handleResetSubmit} className="pf-auth-form">
+              <div className="pf-form-group">
+                <label className="pf-label">Nouveau mot de passe</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faKey} />
+                  </span>
+                  <input
+                    type="password"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="Nouveau mot de passe"
+                    required
+                  />
+                </div>
+              </div>
 
-            <div className="pf-auth-footer">
+              <div className="pf-form-group">
+                <label className="pf-label">Confirmer le mot de passe</label>
+                <div className="pf-input-wrapper">
+                  <span className="pf-input-icon">
+                    <FontAwesomeIcon icon={faLock} />
+                  </span>
+                  <input
+                    type="password"
+                    className="pf-input pf-input-with-icon"
+                    placeholder="Répétez le mot de passe"
+                    required
+                  />
+                </div>
+              </div>
+
               <button
-                type="button"
-                onClick={() => setView('login')}
-                style={{ color: 'var(--pf-muted)' }}
+                type="submit"
+                disabled={isLoading}
+                className="pf-auth-submit-btn"
               >
-                Annuler et revenir à la connexion
+                <span>{isLoading ? 'Mise à jour...' : 'Enregistrer le mot de passe'}</span>
+                <FontAwesomeIcon icon={faArrowRight} />
               </button>
-            </div>
-          </form>
-        )}
+            </form>
+          )}
 
-        {/* 5. RESET PASSWORD SCREEN */}
-        {view === 'reset-password' && (
-          <form onSubmit={handleResetSubmit}>
-            <div className="pf-form-group">
-              <label className="pf-label">Nouveau mot de passe</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faKey} />
-                </span>
-                <input
-                  type="password"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="Nouveau mot de passe"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="pf-form-group">
-              <label className="pf-label">Confirmer le nouveau mot de passe</label>
-              <div className="pf-input-wrapper">
-                <span className="pf-input-icon">
-                  <FontAwesomeIcon icon={faLock} />
-                </span>
-                <input
-                  type="password"
-                  className="pf-input pf-input-with-icon"
-                  placeholder="Répétez le mot de passe"
-                  required
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="pf-btn pf-btn-primary pf-btn-lg"
-              style={{ width: '100%', marginTop: '0.5rem' }}
-            >
-              {isLoading ? 'Mise à jour...' : 'Enregistrer le mot de passe'}
-            </button>
-          </form>
-        )}
+        </div>
       </div>
     </div>
   );

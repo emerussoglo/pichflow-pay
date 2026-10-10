@@ -189,90 +189,48 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute }) => {
         </div>
 
 
-        {/* Navigation List with Rich Row Styling */}
-        <nav className="pf-mobile-drawer-nav">
-          <button
-            onClick={() => handleNavClick('/')}
-            className={`pf-mobile-nav-row ${currentRoute === 'landing' ? 'active' : ''}`}
-          >
-            <div className="pf-mobile-row-left">
-              <span className="pf-mobile-row-icon" style={{ background: '#EFF6FF', color: '#2563EB' }}>
-                <FontAwesomeIcon icon={faReceipt} />
-              </span>
-              <div className="pf-mobile-row-text">
-                <span className="pf-mobile-row-title">Produit</span>
-                <span className="pf-mobile-row-sub">Infrastructure & flux de paiement</span>
-              </div>
-            </div>
-            <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
-          </button>
+        {/* Navigation List Simplifiée */}
+<nav className="pf-mobile-drawer-nav">
+  <button
+    onClick={() => handleNavClick('/')}
+    className={`pf-mobile-nav-row ${currentRoute === 'landing' ? 'active' : ''}`}
+  >
+    <span className="pf-mobile-row-title">Produit</span>
+    <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
+  </button>
 
-          <button
-            onClick={() => handleNavClick('/', 'capacites-section')}
-            className="pf-mobile-nav-row"
-          >
-            <div className="pf-mobile-row-left">
-              <span className="pf-mobile-row-icon" style={{ background: '#F0FDF4', color: '#16A34A' }}>
-                <FontAwesomeIcon icon={faSliders} />
-              </span>
-              <div className="pf-mobile-row-text">
-                <span className="pf-mobile-row-title">Capacités de la plateforme</span>
-                <span className="pf-mobile-row-sub">Tout pour encaisser & contrôler</span>
-              </div>
-            </div>
-            <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
-          </button>
+  <button
+    onClick={() => handleNavClick('/', 'capacites-section')}
+    className="pf-mobile-nav-row"
+  >
+    <span className="pf-mobile-row-title">Capacités de la plateforme</span>
+    <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
+  </button>
 
-          <button
-            onClick={() => handleNavClick('/', 'demarrage-rapide')}
-            className="pf-mobile-nav-row"
-          >
-            <div className="pf-mobile-row-left">
-              <span className="pf-mobile-row-icon" style={{ background: '#FEF3C7', color: '#D97706' }}>
-                <FontAwesomeIcon icon={faBolt} />
-              </span>
-              <div className="pf-mobile-row-text">
-                <span className="pf-mobile-row-title">Démarrage rapide</span>
-                <span className="pf-mobile-row-sub">3 étapes simples pour commencer</span>
-              </div>
-            </div>
-            <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
-          </button>
+  <button
+    onClick={() => handleNavClick('/', 'demarrage-rapide')}
+    className="pf-mobile-nav-row"
+  >
+    <span className="pf-mobile-row-title">Démarrage rapide</span>
+    <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
+  </button>
 
-          <button
-            onClick={() => handleNavClick('/pricing')}
-            className={`pf-mobile-nav-row ${currentRoute === 'pricing' ? 'active' : ''}`}
-          >
-            <div className="pf-mobile-row-left">
-              <span className="pf-mobile-row-icon" style={{ background: '#F1F5F9', color: '#475569' }}>
-                <FontAwesomeIcon icon={faCircleCheck} />
-              </span>
-              <div className="pf-mobile-row-text">
-                <span className="pf-mobile-row-title">Tarifs & Simulateur</span>
-                <span className="pf-mobile-row-sub">Transparent, 0€ frais fixes</span>
-              </div>
-            </div>
-            <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
-          </button>
+  <button
+    onClick={() => handleNavClick('/pricing')}
+    className={`pf-mobile-nav-row ${currentRoute === 'pricing' ? 'active' : ''}`}
+  >
+    <span className="pf-mobile-row-title">Tarifs & Simulateur</span>
+    <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
+  </button>
 
-          <button
-            onClick={() => handleNavClick('/documentation')}
-            className={`pf-mobile-nav-row ${currentRoute === 'documentation' ? 'active' : ''}`}
-          >
-            <div className="pf-mobile-row-left">
-              <span className="pf-mobile-row-icon" style={{ background: '#EEF2FF', color: '#4F46E5' }}>
-                <FontAwesomeIcon icon={faBook} />
-              </span>
-              <div className="pf-mobile-row-text">
-                <span className="pf-mobile-row-title">Documentation API</span>
-                <span className="pf-mobile-row-sub">Guides, SDKs & Webhooks</span>
-              </div>
-            </div>
-            <span className="pf-badge-doc-pill">Docs</span>
-          </button>
-
-         
-        </nav>
+  <button
+    onClick={() => handleNavClick('/documentation')}
+    className={`pf-mobile-nav-row ${currentRoute === 'documentation' ? 'active' : ''}`}
+  >
+    <span className="pf-mobile-row-title">Documentation API</span>
+    <FontAwesomeIcon icon={faChevronRight} className="pf-mobile-chevron" />
+  </button>
+</nav>
 
         {/* Action Buttons in Drawer */}
         <div className="pf-mobile-drawer-actions">
